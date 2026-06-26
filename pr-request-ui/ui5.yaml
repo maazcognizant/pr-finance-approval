@@ -1,0 +1,14 @@
+specVersion: "3.0"
+metadata:
+  name: com.maaz.prapproval.prrequestui
+type: application
+resources:
+  configuration:
+    paths:
+      webapp: webapp
+builder:
+  settings:
+    includeDependency:
+      - sap.ui.core
+      - sap.m
+      - sap.ui.layout

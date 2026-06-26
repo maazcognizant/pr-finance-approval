@@ -1,0 +1,268 @@
+{
+  "_version": "1.26.0",
+  "sap.app": {
+    "id": "com.maaz.prapproval.prfinanceapprovalui",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.6"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.82.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.maaz.prapproval.prfinanceapprovalui.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.maaz.prapproval.prfinanceapprovalui.view",
+        "controlAggregation": "pages",
+        "controlId": "app"
+      },
+      "routes": [
+        {
+          "name": "RouteApp",
+          "pattern": ":?query:",
+          "target": [
+            "TargetApp"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetApp": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewName": "App"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.maaz.prapproval.prfinanceapprovalui.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "pr-finance-approval"
+  },
+  "sap.bpa.task": {
+    "_version": "1.0.0",
+    "category": "approval",
+    "outcomes": [
+      {
+        "id": "approve",
+        "label": "Approve"
+      },
+      {
+        "id": "reject",
+        "label": "Reject"
+      }
+    ],
+    "inputs": {
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "title": "Finance Purchase Requisition Input",
+      "type": "object",
+      "required": [
+        "requestId",
+        "employeeName",
+        "itemName",
+        "quantity",
+        "estimatedCost",
+        "department",
+        "businessReason",
+        "requiredDate"
+      ],
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "title": "Request ID"
+        },
+        "employeeName": {
+          "type": "string",
+          "title": "Employee Name"
+        },
+        "employeeId": {
+          "type": "string",
+          "title": "Employee ID"
+        },
+        "employeeEmail": {
+          "type": "string",
+          "title": "Employee Email"
+        },
+        "department": {
+          "type": "string",
+          "title": "Department"
+        },
+        "itemName": {
+          "type": "string",
+          "title": "Item Name"
+        },
+        "quantity": {
+          "type": "integer",
+          "title": "Quantity"
+        },
+        "estimatedCost": {
+          "type": "number",
+          "title": "Estimated Cost"
+        },
+        "businessReason": {
+          "type": "string",
+          "title": "Business Reason"
+        },
+        "requiredDate": {
+          "type": "string",
+          "title": "Required Date"
+        },
+        "purchaseType": {
+          "type": "string",
+          "title": "Purchase Type"
+        },
+        "projectName": {
+          "type": "string",
+          "title": "Project Name"
+        },
+        "projectId": {
+          "type": "string",
+          "title": "Project ID"
+        },
+        "costCentre": {
+          "type": "string",
+          "title": "Cost Centre"
+        },
+        "vendorName": {
+          "type": "string",
+          "title": "Vendor Name"
+        },
+        "vendorPreference": {
+          "type": "string",
+          "title": "Vendor Preference"
+        },
+        "deptHeadComment": {
+          "type": "string",
+          "title": "Department Head Comment"
+        },
+        "deptHeadDecision": {
+          "type": "string",
+          "title": "Department Head Decision"
+        },
+        "aiSummary": {
+          "type": "string",
+          "title": "AI Summary"
+        },
+        "aiJustificationScore": {
+          "type": "number",
+          "title": "AI Justification Score"
+        },
+        "aiRiskLevel": {
+          "type": "string",
+          "title": "AI Risk Level"
+        },
+        "aiRecommendation": {
+          "type": "string",
+          "title": "AI Recommendation"
+        },
+        "aiBudgetObservation": {
+          "type": "string",
+          "title": "AI Budget Observation"
+        },
+        "aiMissingInformation": {
+          "type": "string",
+          "title": "AI Missing Information"
+        },
+        "aiSuggestedQuestions": {
+          "type": "string",
+          "title": "AI Suggested Questions"
+        },
+        "aiAnalysisStatus": {
+          "type": "string",
+          "title": "AI Analysis Status"
+        }
+      }
+    },
+    "outputs": {
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "title": "Finance Approval Output",
+      "type": "object",
+      "properties": {
+        "financeComment": {
+          "type": "string",
+          "title": "Finance Comment"
+        },
+        "financeDecision": {
+          "type": "string",
+          "title": "Finance Decision"
+        }
+      }
+    }
+  }
+}

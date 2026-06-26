@@ -1,0 +1,418 @@
+<mvc:View
+    id="viewPurchaseRequest"
+    controllerName="com.maaz.prapproval.prrequestui.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <App id="app">
+        <pages>
+            <Page
+                id="pagePurchaseRequest"
+                showHeader="false"
+                backgroundDesign="Solid">
+
+                <content>
+                    <VBox
+                        id="requestPage"
+                        class="requestPage">
+
+                        <!-- Hero Header -->
+                        <HBox
+                            id="heroHeader"
+                            class="requestHero"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween">
+
+                            <VBox id="heroText">
+                                <Text
+                                    id="heroEyebrow"
+                                    text="PURCHASE REQUISITION PORTAL"
+                                    class="requestEyebrow" />
+
+                                <Title
+                                    id="heroTitle"
+                                    text="Submit a Purchase Request"
+                                    level="H1"
+                                    class="requestHeroTitle" />
+
+                                <Text
+                                    id="heroSubtitle"
+                                    text="Submit a purchase request for AI analysis, Department Head review, and Finance approval."
+                                    wrapping="true"
+                                    class="requestHeroSubtitle" />
+                            </VBox>
+
+                            <VBox
+                                id="heroStatus"
+                                class="requestHeroBadge">
+
+                                <Text
+                                    id="heroStatusLabel"
+                                    text="Workflow"
+                                    class="requestBadgeLabel" />
+
+                                <ObjectStatus
+                                    id="heroStatusValue"
+                                    text="AI-enabled approval"
+                                    state="Information"
+                                    inverted="true" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Submission Information -->
+                        <MessageStrip
+                            id="requestInformationStrip"
+                            text="Required fields are marked with an asterisk. Optional project, cost-centre, and vendor information may be provided when relevant."
+                            type="Information"
+                            showIcon="true"
+                            showCloseButton="false"
+                            class="sapUiSmallMarginBottom" />
+
+                        <!-- Requester Information -->
+                        <Panel
+                            id="panelRequester"
+                            headerText="Requester Information"
+                            class="requestCard">
+
+                            <content>
+                                <form:SimpleForm
+                                    id="formRequester"
+                                    editable="true"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanXL="4"
+                                    labelSpanL="4"
+                                    labelSpanM="4"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="1"
+                                    singleContainerFullSize="false">
+
+                                    <form:content>
+                                        <Label
+                                            id="lblEmployeeName"
+                                            text="Employee Name"
+                                            required="true" />
+
+                                        <Input
+                                            id="inpEmployeeName"
+                                            value="{request>/employeeName}"
+                                            placeholder="Enter employee name"
+                                            maxLength="200"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblEmployeeId"
+                                            text="Employee ID" />
+
+                                        <Input
+                                            id="inpEmployeeId"
+                                            value="{request>/employeeId}"
+                                            placeholder="Optional employee ID"
+                                            maxLength="100"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblEmployeeEmail"
+                                            text="Employee Email"
+                                            required="true" />
+
+                                        <Input
+                                            id="inpEmployeeEmail"
+                                            value="{request>/employeeEmail}"
+                                            type="Email"
+                                            placeholder="name@example.com"
+                                            maxLength="250"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblDepartment"
+                                            text="Department"
+                                            required="true" />
+
+                                        <Input
+                                            id="inpDepartment"
+                                            value="{request>/department}"
+                                            placeholder="Example: IT"
+                                            maxLength="200"
+                                            enabled="{= !${request>/submitting} }" />
+                                    </form:content>
+                                </form:SimpleForm>
+                            </content>
+                        </Panel>
+
+                        <!-- Purchase Details -->
+                        <Panel
+                            id="panelPurchase"
+                            headerText="Purchase Details"
+                            class="requestCard">
+
+                            <content>
+                                <form:SimpleForm
+                                    id="formPurchase"
+                                    editable="true"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanXL="4"
+                                    labelSpanL="4"
+                                    labelSpanM="4"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="1"
+                                    singleContainerFullSize="false">
+
+                                    <form:content>
+                                        <Label
+                                            id="lblItemName"
+                                            text="Item Name"
+                                            required="true" />
+
+                                        <Input
+                                            id="inpItemName"
+                                            value="{request>/itemName}"
+                                            placeholder="Example: Laptop"
+                                            maxLength="300"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblQuantity"
+                                            text="Quantity"
+                                            required="true" />
+
+                                        <StepInput
+                                            id="stepQuantity"
+                                            value="{request>/quantity}"
+                                            min="1"
+                                            step="1"
+                                            width="100%"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblEstimatedCost"
+                                            text="Estimated Cost"
+                                            required="true" />
+
+                                        <Input
+                                            id="inpEstimatedCost"
+                                            value="{request>/estimatedCost}"
+                                            type="Number"
+                                            description="INR"
+                                            placeholder="Enter total estimated cost"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblRequiredDate"
+                                            text="Required Date"
+                                            required="true" />
+
+                                        <DatePicker
+                                            id="dateRequired"
+                                            value="{request>/requiredDate}"
+                                            valueFormat="yyyy-MM-dd"
+                                            displayFormat="dd MMM yyyy"
+                                            placeholder="Select required date"
+                                            width="100%"
+                                            enabled="{= !${request>/submitting} }" />
+
+                                        <Label
+                                            id="lblBusinessReason"
+                                            text="Business Reason"
+                                            required="true" />
+
+                                        <TextArea
+                                            id="txtBusinessReason"
+                                            value="{request>/businessReason}"
+                                            placeholder="Explain why this purchase is required"
+                                            rows="5"
+                                            maxLength="1500"
+                                            width="100%"
+                                            growing="true"
+                                            growingMaxLines="8"
+                                            enabled="{= !${request>/submitting} }" />
+                                    </form:content>
+                                </form:SimpleForm>
+                            </content>
+                        </Panel>
+
+                        <!-- Optional Business Details -->
+                        <Panel
+                            id="panelOptional"
+                            headerText="Optional Business Details"
+                            expandable="true"
+                            expanded="true"
+                            class="requestCard">
+
+                            <content>
+                                <VBox
+                                    id="optionalDetailsContainer"
+                                    class="sapUiSmallMargin">
+
+                                    <MessageStrip
+                                        id="optionalDetailsInformation"
+                                        text="Project fields are shown when Project Purchase is selected. All fields in this section are optional."
+                                        type="Information"
+                                        showIcon="true"
+                                        showCloseButton="false"
+                                        class="sapUiSmallMarginBottom" />
+
+                                    <form:SimpleForm
+                                        id="formOptional"
+                                        editable="true"
+                                        layout="ResponsiveGridLayout"
+                                        labelSpanXL="4"
+                                        labelSpanL="4"
+                                        labelSpanM="4"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="0"
+                                        emptySpanL="0"
+                                        emptySpanM="0"
+                                        emptySpanS="0"
+                                        columnsXL="2"
+                                        columnsL="2"
+                                        columnsM="1"
+                                        singleContainerFullSize="false">
+
+                                        <form:content>
+                                            <Label
+                                                id="lblPurchaseType"
+                                                text="Purchase Type" />
+
+                                            <Select
+                                                id="selectPurchaseType"
+                                                selectedKey="{request>/purchaseType}"
+                                                change=".onPurchaseTypeChange"
+                                                width="100%"
+                                                enabled="{= !${request>/submitting} }">
+
+                                                <core:Item
+                                                    id="itemDepartmentPurchase"
+                                                    key="Department Purchase"
+                                                    text="Department Purchase" />
+
+                                                <core:Item
+                                                    id="itemProjectPurchase"
+                                                    key="Project Purchase"
+                                                    text="Project Purchase" />
+
+                                                <core:Item
+                                                    id="itemGeneralPurchase"
+                                                    key="General Purchase"
+                                                    text="General Purchase" />
+                                            </Select>
+
+                                            <Label
+                                                id="lblProjectName"
+                                                text="Project Name"
+                                                visible="{= ${request>/purchaseType} === 'Project Purchase' }" />
+
+                                            <Input
+                                                id="inpProjectName"
+                                                value="{request>/projectName}"
+                                                visible="{= ${request>/purchaseType} === 'Project Purchase' }"
+                                                placeholder="Optional project name"
+                                                maxLength="300"
+                                                enabled="{= !${request>/submitting} }" />
+
+                                            <Label
+                                                id="lblProjectId"
+                                                text="Project ID"
+                                                visible="{= ${request>/purchaseType} === 'Project Purchase' }" />
+
+                                            <Input
+                                                id="inpProjectId"
+                                                value="{request>/projectId}"
+                                                visible="{= ${request>/purchaseType} === 'Project Purchase' }"
+                                                placeholder="Optional project ID"
+                                                maxLength="150"
+                                                enabled="{= !${request>/submitting} }" />
+
+                                            <Label
+                                                id="lblCostCentre"
+                                                text="Cost Centre" />
+
+                                            <Input
+                                                id="inpCostCentre"
+                                                value="{request>/costCentre}"
+                                                placeholder="Example: CC-IT-100"
+                                                maxLength="150"
+                                                enabled="{= !${request>/submitting} }" />
+
+                                            <Label
+                                                id="lblVendorName"
+                                                text="Vendor Name" />
+
+                                            <Input
+                                                id="inpVendorName"
+                                                value="{request>/vendorName}"
+                                                placeholder="Optional vendor name"
+                                                maxLength="300"
+                                                enabled="{= !${request>/submitting} }" />
+
+                                            <Label
+                                                id="lblVendorPreference"
+                                                text="Vendor Preference" />
+
+                                            <Input
+                                                id="inpVendorPreference"
+                                                value="{request>/vendorPreference}"
+                                                placeholder="Example: Authorised vendor"
+                                                maxLength="300"
+                                                enabled="{= !${request>/submitting} }" />
+                                        </form:content>
+                                    </form:SimpleForm>
+                                </VBox>
+                            </content>
+                        </Panel>
+
+                        <!-- Form Actions -->
+                        <HBox
+                            id="formActions"
+                            justifyContent="End"
+                            alignItems="Center"
+                            wrap="Wrap"
+                            class="requestActionBar">
+
+                            <Button
+                                id="btnReset"
+                                text="Reset Form"
+                                type="Transparent"
+                                icon="sap-icon://reset"
+                                enabled="{= !${request>/submitting} }"
+                                press=".onReset"
+                                class="sapUiTinyMarginEnd" />
+
+                            <Button
+                                id="btnSubmit"
+                                text="Submit Purchase Request"
+                                type="Emphasized"
+                                icon="sap-icon://paper-plane"
+                                enabled="{= !${request>/submitting} }"
+                                press=".onSubmit" />
+
+                            <BusyIndicator
+                                id="busySubmit"
+                                visible="{request>/submitting}"
+                                size="1rem"
+                                class="sapUiTinyMarginBegin" />
+                        </HBox>
+
+                    </VBox>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

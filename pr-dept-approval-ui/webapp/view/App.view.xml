@@ -1,0 +1,629 @@
+<mvc:View
+    id="viewDeptHeadApproval"
+    controllerName="com.maaz.prapproval.prdeptapprovalui.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <App id="app">
+        <pages>
+            <Page
+                id="pageDeptHeadApproval"
+                showHeader="false"
+                backgroundDesign="Solid">
+
+                <content>
+                    <VBox
+                        id="vboxDeptMainPage"
+                        class="deptPage">
+
+                        <!-- Hero Header -->
+                        <HBox
+                            id="deptHeroHeader"
+                            class="deptHero"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween">
+
+                            <VBox id="deptHeroTextBox">
+                                <Text
+                                    id="txtDeptDemoLabel"
+                                    text="COGNIZANT DEMO APPROVAL"
+                                    class="deptEyebrow" />
+
+                                <Title
+                                    id="titleDeptMainHeader"
+                                    text="Department Head Purchase Review"
+                                    level="H1"
+                                    class="deptHeroTitle" />
+
+                                <Text
+                                    id="txtDeptHeroSubtitle"
+                                    text="Validate department need, optional project and vendor details, quantity justification, required date, and business reason before forwarding to Finance."
+                                    wrapping="true"
+                                    class="deptHeroSub" />
+                            </VBox>
+
+                            <VBox
+                                id="deptHeroStatusBox"
+                                class="deptHeroBadge">
+
+                                <Text
+                                    id="txtDeptApprovalStage"
+                                    text="Approval Stage"
+                                    class="deptBadgeLabel" />
+
+                                <ObjectStatus
+                                    id="objDeptStatus"
+                                    text="Department Review"
+                                    state="Information"
+                                    inverted="true" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Summary Tiles -->
+                        <HBox
+                            id="hboxDeptSummaryTiles"
+                            class="deptTileRow"
+                            wrap="Wrap">
+
+                            <VBox
+                                id="deptTileRequestId"
+                                class="deptTile">
+
+                                <Text
+                                    id="txtDeptTileRequestLabel"
+                                    text="Request ID"
+                                    class="deptTileLabel" />
+
+                                <Title
+                                    id="titleDeptTileRequestId"
+                                    text="{context>/requestId}"
+                                    level="H3"
+                                    class="deptTileValue" />
+                            </VBox>
+
+                            <VBox
+                                id="deptTileAmount"
+                                class="deptTile">
+
+                                <Text
+                                    id="txtDeptTileAmountLabel"
+                                    text="Estimated Cost"
+                                    class="deptTileLabel" />
+
+                                <ObjectNumber
+                                    id="objDeptTileAmount"
+                                    number="{context>/estimatedCost}"
+                                    unit="INR"
+                                    state="Information"
+                                    class="deptTileObjectNumber" />
+                            </VBox>
+
+                            <VBox
+                                id="deptTileDepartment"
+                                class="deptTile">
+
+                                <Text
+                                    id="txtDeptTileDeptLabel"
+                                    text="Department"
+                                    class="deptTileLabel" />
+
+                                <Title
+                                    id="titleDeptTileDepartment"
+                                    text="{context>/department}"
+                                    level="H3"
+                                    class="deptTileValue" />
+                            </VBox>
+
+                            <VBox
+                                id="deptTilePurchaseType"
+                                class="deptTile">
+
+                                <Text
+                                    id="txtDeptTilePurchaseTypeLabel"
+                                    text="Purchase Type"
+                                    class="deptTileLabel" />
+
+                                <ObjectStatus
+                                    id="objDeptPurchaseType"
+                                    text="{context>/purchaseType}"
+                                    state="Information"
+                                    inverted="true" />
+                            </VBox>
+
+                            <VBox
+                                id="deptTileAIRisk"
+                                class="deptTile">
+
+                                <Text
+                                    id="txtDeptTileAIRiskLabel"
+                                    text="AI Risk"
+                                    class="deptTileLabel" />
+
+                                <ObjectStatus
+                                    id="objDeptTileAIRisk"
+                                    text="{context>/aiRiskLevel}"
+                                    state="Warning"
+                                    inverted="true" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Requester Details -->
+                        <Panel
+                            id="panelDeptRequesterDetails"
+                            headerText="Requester Details"
+                            expandable="false"
+                            class="deptCard">
+
+                            <content>
+                                <form:SimpleForm
+                                    id="formDeptRequesterDetails"
+                                    editable="false"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanXL="4"
+                                    labelSpanL="4"
+                                    labelSpanM="4"
+                                    labelSpanS="12"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="1">
+
+                                    <form:content>
+                                        <Label
+                                            id="lblDeptRequestId"
+                                            text="Request ID" />
+
+                                        <Input
+                                            id="inpDeptRequestId"
+                                            value="{context>/requestId}"
+                                            editable="false" />
+
+                                        <Label
+                                            id="lblDeptEmployeeName"
+                                            text="Employee Name" />
+
+                                        <Input
+                                            id="inpDeptEmployeeName"
+                                            value="{context>/employeeName}"
+                                            editable="false" />
+
+                                        <Label
+                                            id="lblDeptEmployeeId"
+                                            text="Employee ID" />
+
+                                        <Input
+                                            id="inpDeptEmployeeId"
+                                            value="{context>/employeeId}"
+                                            editable="false"
+                                            placeholder="Not provided" />
+
+                                        <Label
+                                            id="lblDeptEmployeeEmail"
+                                            text="Employee Email" />
+
+                                        <Input
+                                            id="inpDeptEmployeeEmail"
+                                            value="{context>/employeeEmail}"
+                                            editable="false" />
+
+                                        <Label
+                                            id="lblDeptDepartment"
+                                            text="Department" />
+
+                                        <Input
+                                            id="inpDeptDepartment"
+                                            value="{context>/department}"
+                                            editable="false" />
+                                    </form:content>
+                                </form:SimpleForm>
+                            </content>
+                        </Panel>
+
+                        <!-- Purchase Details -->
+                        <Panel
+                            id="panelDeptPurchaseDetails"
+                            headerText="Purchase Details"
+                            expandable="false"
+                            class="deptCard">
+
+                            <content>
+                                <form:SimpleForm
+                                    id="formDeptPurchaseDetails"
+                                    editable="false"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanXL="4"
+                                    labelSpanL="4"
+                                    labelSpanM="4"
+                                    labelSpanS="12"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="1">
+
+                                    <form:content>
+                                        <Label
+                                            id="lblDeptItemName"
+                                            text="Item Name" />
+
+                                        <Input
+                                            id="inpDeptItemName"
+                                            value="{context>/itemName}"
+                                            editable="false" />
+
+                                        <Label
+                                            id="lblDeptQuantity"
+                                            text="Quantity" />
+
+                                        <Input
+                                            id="inpDeptQuantity"
+                                            value="{context>/quantity}"
+                                            editable="false" />
+
+                                        <Label
+                                            id="lblDeptEstimatedCost"
+                                            text="Estimated Cost" />
+
+                                        <ObjectNumber
+                                            id="objDeptEstimatedCost"
+                                            number="{context>/estimatedCost}"
+                                            unit="INR"
+                                            state="Information" />
+
+                                        <Label
+                                            id="lblDeptRequiredDate"
+                                            text="Required Date" />
+
+                                        <Input
+                                            id="inpDeptRequiredDate"
+                                            value="{context>/requiredDate}"
+                                            editable="false" />
+
+                                        <Label
+                                            id="lblDeptBusinessReason"
+                                            text="Business Reason" />
+
+                                        <TextArea
+                                            id="txtDeptBusinessReason"
+                                            value="{context>/businessReason}"
+                                            editable="false"
+                                            rows="4"
+                                            width="100%" />
+                                    </form:content>
+                                </form:SimpleForm>
+                            </content>
+                        </Panel>
+
+                        <!-- Optional Business Details -->
+                        <Panel
+                            id="panelDeptBusinessDetails"
+                            headerText="Optional Business Details"
+                            expandable="true"
+                            expanded="true"
+                            class="deptCard">
+
+                            <content>
+                                <VBox
+                                    id="vboxDeptBusinessDetails"
+                                    class="sapUiSmallMargin">
+
+                                    <MessageStrip
+                                        id="msgDeptOptionalDetails"
+                                        text="These fields are optional and are shown only to provide additional project, cost-centre, and vendor context."
+                                        type="Information"
+                                        showIcon="true"
+                                        showCloseButton="false"
+                                        class="sapUiSmallMarginBottom" />
+
+                                    <form:SimpleForm
+                                        id="formDeptBusinessDetails"
+                                        editable="false"
+                                        layout="ResponsiveGridLayout"
+                                        labelSpanXL="4"
+                                        labelSpanL="4"
+                                        labelSpanM="4"
+                                        labelSpanS="12"
+                                        columnsXL="2"
+                                        columnsL="2"
+                                        columnsM="1">
+
+                                        <form:content>
+                                            <Label
+                                                id="lblDeptPurchaseType"
+                                                text="Purchase Type" />
+
+                                            <Input
+                                                id="inpDeptPurchaseType"
+                                                value="{context>/purchaseType}"
+                                                editable="false"
+                                                placeholder="Not provided" />
+
+                                            <Label
+                                                id="lblDeptProjectName"
+                                                text="Project Name" />
+
+                                            <Input
+                                                id="inpDeptProjectName"
+                                                value="{context>/projectName}"
+                                                editable="false"
+                                                placeholder="Not provided" />
+
+                                            <Label
+                                                id="lblDeptProjectId"
+                                                text="Project ID" />
+
+                                            <Input
+                                                id="inpDeptProjectId"
+                                                value="{context>/projectId}"
+                                                editable="false"
+                                                placeholder="Not provided" />
+
+                                            <Label
+                                                id="lblDeptCostCentre"
+                                                text="Cost Centre" />
+
+                                            <Input
+                                                id="inpDeptCostCentre"
+                                                value="{context>/costCentre}"
+                                                editable="false"
+                                                placeholder="Not provided" />
+
+                                            <Label
+                                                id="lblDeptVendorName"
+                                                text="Vendor Name" />
+
+                                            <Input
+                                                id="inpDeptVendorName"
+                                                value="{context>/vendorName}"
+                                                editable="false"
+                                                placeholder="Not provided" />
+
+                                            <Label
+                                                id="lblDeptVendorPreference"
+                                                text="Vendor Preference" />
+
+                                            <Input
+                                                id="inpDeptVendorPreference"
+                                                value="{context>/vendorPreference}"
+                                                editable="false"
+                                                placeholder="Not provided" />
+                                        </form:content>
+                                    </form:SimpleForm>
+                                </VBox>
+                            </content>
+                        </Panel>
+
+                        <!-- AI Purchase Analysis -->
+                        <Panel
+                            id="panelDeptAIAnalysis"
+                            expandable="true"
+                            expanded="true"
+                            class="deptCard aiAnalysisPanel">
+
+                            <headerToolbar>
+                                <OverflowToolbar
+                                    id="toolbarDeptAIAnalysis">
+
+                                    <core:Icon
+                                        id="iconDeptAIAnalysis"
+                                        src="sap-icon://lightbulb"
+                                        size="1.2rem"
+                                        class="sapUiTinyMarginEnd" />
+
+                                    <Title
+                                        id="titleDeptAIAnalysis"
+                                        text="AI Purchase Analysis"
+                                        level="H3" />
+
+                                    <ToolbarSpacer
+                                        id="spacerDeptAIAnalysis" />
+
+                                    <ObjectStatus
+                                        id="statusDeptAIAnalysis"
+                                        text="{context>/aiAnalysisStatus}"
+                                        state="Success"
+                                        inverted="true" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <content>
+                                <VBox
+                                    id="vboxDeptAIAnalysis"
+                                    class="sapUiSmallMargin">
+
+                                    <MessageStrip
+                                        id="msgDeptAIAdvisory"
+                                        text="This AI analysis is advisory only. The Department Head must make the final approval decision."
+                                        type="Information"
+                                        showIcon="true"
+                                        showCloseButton="false"
+                                        class="sapUiSmallMarginBottom" />
+
+                                    <HBox
+                                        id="hboxDeptAIMetrics"
+                                        wrap="Wrap"
+                                        alignItems="Start"
+                                        class="aiMetricsRow">
+
+                                        <VBox
+                                            id="vboxDeptAIRisk"
+                                            class="aiMetricCard sapUiSmallMarginEnd sapUiSmallMarginBottom">
+
+                                            <Text
+                                                id="txtDeptAIRiskLabel"
+                                                text="Risk Level"
+                                                class="aiMetricLabel" />
+
+                                            <ObjectStatus
+                                                id="statusDeptAIRisk"
+                                                text="{context>/aiRiskLevel}"
+                                                state="Warning"
+                                                icon="sap-icon://alert" />
+                                        </VBox>
+
+                                        <VBox
+                                            id="vboxDeptAIRecommendation"
+                                            class="aiMetricCard aiRecommendationMetric sapUiSmallMarginEnd sapUiSmallMarginBottom">
+
+                                            <Text
+                                                id="txtDeptAIRecommendationLabel"
+                                                text="Recommendation"
+                                                class="aiMetricLabel" />
+
+                                            <ObjectStatus
+                                                id="statusDeptAIRecommendation"
+                                                text="{context>/aiRecommendation}"
+                                                state="Information"
+                                                icon="sap-icon://hint" />
+                                        </VBox>
+
+                                        <VBox
+                                            id="vboxDeptAIScore"
+                                            class="aiMetricCard sapUiSmallMarginBottom">
+
+                                            <Text
+                                                id="txtDeptAIScoreLabel"
+                                                text="Justification Score"
+                                                class="aiMetricLabel" />
+
+                                            <ObjectNumber
+                                                id="numberDeptAIScore"
+                                                number="{context>/aiJustificationScore}"
+                                                unit="/100"
+                                                state="Success"
+                                                emphasized="true" />
+                                        </VBox>
+                                    </HBox>
+
+                                    <VBox
+                                        id="vboxDeptAISummary"
+                                        class="aiContentBlock sapUiSmallMarginTop">
+
+                                        <Title
+                                            id="titleDeptAISummary"
+                                            text="AI Summary"
+                                            level="H5" />
+
+                                        <Text
+                                            id="textDeptAISummary"
+                                            text="{context>/aiSummary}"
+                                            wrapping="true"
+                                            class="aiBodyText" />
+                                    </VBox>
+
+                                    <VBox
+                                        id="vboxDeptAIBudget"
+                                        class="aiContentBlock sapUiSmallMarginTop">
+
+                                        <Title
+                                            id="titleDeptAIBudget"
+                                            text="Budget Observation"
+                                            level="H5" />
+
+                                        <Text
+                                            id="textDeptAIBudget"
+                                            text="{context>/aiBudgetObservation}"
+                                            wrapping="true"
+                                            class="aiBodyText" />
+                                    </VBox>
+
+                                    <VBox
+                                        id="vboxDeptAIMissingInfo"
+                                        class="aiContentBlock aiWarningBlock sapUiSmallMarginTop">
+
+                                        <HBox
+                                            id="hboxDeptAIMissingTitle"
+                                            alignItems="Center">
+
+                                            <core:Icon
+                                                id="iconDeptAIMissing"
+                                                src="sap-icon://message-warning"
+                                                size="1rem"
+                                                class="sapUiTinyMarginEnd" />
+
+                                            <Title
+                                                id="titleDeptAIMissingInfo"
+                                                text="Missing Information"
+                                                level="H5" />
+                                        </HBox>
+
+                                        <Text
+                                            id="textDeptAIMissingInfo"
+                                            text="{context>/aiMissingInformation}"
+                                            wrapping="true"
+                                            renderWhitespace="true"
+                                            class="aiBodyText" />
+                                    </VBox>
+
+                                    <VBox
+                                        id="vboxDeptAIQuestions"
+                                        class="aiContentBlock aiQuestionBlock sapUiSmallMarginTop">
+
+                                        <HBox
+                                            id="hboxDeptAIQuestionsTitle"
+                                            alignItems="Center">
+
+                                            <core:Icon
+                                                id="iconDeptAIQuestions"
+                                                src="sap-icon://question-mark"
+                                                size="1rem"
+                                                class="sapUiTinyMarginEnd" />
+
+                                            <Title
+                                                id="titleDeptAIQuestions"
+                                                text="Suggested Questions"
+                                                level="H5" />
+                                        </HBox>
+
+                                        <Text
+                                            id="textDeptAIQuestions"
+                                            text="{context>/aiSuggestedQuestions}"
+                                            wrapping="true"
+                                            renderWhitespace="true"
+                                            class="aiBodyText" />
+                                    </VBox>
+                                </VBox>
+                            </content>
+                        </Panel>
+
+                        <!-- Department Head Decision -->
+                        <Panel
+                            id="panelDeptDecision"
+                            headerText="Department Head Decision"
+                            expandable="false"
+                            class="deptDecisionCard">
+
+                            <content>
+                                <VBox
+                                    id="vboxDeptDecision"
+                                    class="sapUiSmallMargin">
+
+                                    <MessageStrip
+                                        id="msgDeptInstruction"
+                                        text="Add a Department Head comment before approving or rejecting this purchase request."
+                                        type="Information"
+                                        showIcon="true"
+                                        showCloseButton="false"
+                                        class="sapUiTinyMarginBottom" />
+
+                                    <Label
+                                        id="lblDeptHeadComment"
+                                        text="Department Head Comment"
+                                        required="true" />
+
+                                    <TextArea
+                                        id="txtDeptHeadComment"
+                                        value="{context>/deptHeadComment}"
+                                        placeholder="Example: Approved. The department requirement is valid and aligned with business needs."
+                                        rows="4"
+                                        width="100%" />
+                                </VBox>
+                            </content>
+                        </Panel>
+
+                    </VBox>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

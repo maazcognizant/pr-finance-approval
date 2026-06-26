@@ -1,0 +1,173 @@
+.prPage {
+    min-height: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f3f8ff 0%, #eef6ff 45%, #ffffff 100%);
+}
+
+.prHero {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #003f7f 0%, #0070c9 55%, #00a3e0 100%);
+    color: #ffffff;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 68, 140, 0.25);
+    margin-bottom: 1rem;
+}
+
+.prEyebrow {
+    color: #d9ecff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.prHeroTitle {
+    color: #ffffff;
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-top: 0.25rem;
+}
+
+.prHeroSub {
+    color: #eaf6ff;
+    max-width: 52rem;
+    margin-top: 0.35rem;
+}
+
+.prHeroBadge {
+    min-width: 11rem;
+    padding: 0.8rem;
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.prBadgeLabel {
+    color: #eaf6ff;
+    font-size: 0.75rem;
+    margin-bottom: 0.35rem;
+}
+
+.prTileRow {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.prTile {
+    min-width: 12rem;
+    padding: 1rem;
+    border-radius: 0.9rem;
+    background: #ffffff;
+    border: 1px solid #dcecff;
+    box-shadow: 0 0.25rem 1rem rgba(0, 68, 140, 0.08);
+}
+
+.prTileLabel {
+    color: #5c6f82;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.prTileValue {
+    color: #003f7f;
+    margin-top: 0.25rem;
+}
+
+.prTileObjectNumber {
+    margin-top: 0.25rem;
+}
+
+.prCard {
+    border-radius: 0.9rem;
+    background: #ffffff;
+    border: 1px solid #dcecff;
+    box-shadow: 0 0.25rem 1rem rgba(0, 68, 140, 0.06);
+    margin-bottom: 1rem;
+}
+
+.prDecisionCard {
+    border-radius: 0.9rem;
+    background: #ffffff;
+    border: 1px solid #b8dcff;
+    box-shadow: 0 0.35rem 1.2rem rgba(0, 112, 201, 0.12);
+    margin-bottom: 1rem;
+}
+
+/* =========================================================
+   Finance AI Purchase Analysis
+   ========================================================= */
+
+.aiAnalysisPanel {
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.aiAnalysisPanel .sapMPanelContent {
+  padding: 1rem 1.25rem;
+}
+
+.aiAnalysisPanel .sapMTB {
+  min-height: 3.25rem;
+}
+
+.aiMetricsRow {
+  width: 100%;
+}
+
+.aiMetricCard {
+  min-width: 10rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(10, 110, 209, 0.16);
+  border-radius: 0.75rem;
+  background: rgba(10, 110, 209, 0.05);
+}
+
+.aiRecommendationMetric {
+  min-width: 18rem;
+}
+
+.aiMetricLabel {
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #556b82;
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
+}
+
+.aiContentBlock {
+  padding: 0.85rem 1rem;
+  border-radius: 0.7rem;
+  background: #f7f9fb;
+}
+
+.aiWarningBlock {
+  border-left: 0.25rem solid #e9730c;
+  background: #fff8f1;
+}
+
+.aiQuestionBlock {
+  border-left: 0.25rem solid #0a6ed1;
+  background: #f3f8fd;
+}
+
+.aiBodyText {
+  display: block;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+  color: #29313a;
+}
+
+@media (max-width: 600px) {
+  .aiMetricCard,
+  .aiRecommendationMetric {
+    width: 100%;
+    min-width: 100%;
+    margin-right: 0;
+  }
+
+  .aiAnalysisPanel .sapMPanelContent {
+    padding: 0.75rem;
+  }
+}

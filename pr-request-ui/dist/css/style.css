@@ -1,0 +1,237 @@
+html,
+body,
+.sapUiBody,
+#container {
+  min-height: 100%;
+  margin: 0;
+}
+
+.requestPage {
+  min-height: 100vh;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(10, 110, 209, 0.12),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(99, 52, 255, 0.10),
+      transparent 25rem
+    ),
+    #f5f7fa;
+}
+
+/* =========================================================
+   Hero section
+   ========================================================= */
+
+.requestHero {
+  padding: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 1.25rem;
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      #0a6ed1 0%,
+      #354a5f 55%,
+      #6320ee 100%
+    );
+  box-shadow:
+    0 1rem 2rem rgba(34, 53, 72, 0.18);
+}
+
+.requestEyebrow {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14rem;
+}
+
+.requestHeroTitle {
+  color: #ffffff !important;
+  margin-top: 0.25rem;
+}
+
+.requestHeroSubtitle {
+  max-width: 46rem;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.requestHeroBadge {
+  min-width: 11rem;
+  padding: 1rem;
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1rem;
+  background:
+    rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(12px);
+}
+
+.requestBadgeLabel {
+  margin-bottom: 0.35rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.75rem;
+}
+
+/* =========================================================
+   Request cards
+   ========================================================= */
+
+.requestCard {
+  margin-bottom: 1rem;
+  border: 1px solid #dfe3e8;
+  border-radius: 1rem;
+  overflow: visible !important;
+  background: #ffffff;
+  box-shadow:
+    0 0.35rem 1rem rgba(34, 53, 72, 0.08);
+}
+
+/* Prevent panel header clipping */
+.requestCard .sapMPanelWrappingDiv,
+.requestCard .sapMPanelWrappingDivTb,
+.requestCard .sapMPanelHdr {
+  min-height: 3.25rem !important;
+  height: auto !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* Standard panel title */
+.requestCard .sapMPanelHdr {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0.9rem 1.25rem !important;
+  border-bottom: 1px solid #edf0f2;
+  background: #ffffff;
+  color: #1d2d3e !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.5rem !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* Expandable panel title area */
+.requestCard .sapMPanelWrappingDivTb {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  border-bottom: 1px solid #edf0f2;
+  background: #ffffff;
+}
+
+/* Expandable panel toolbar */
+.requestCard .sapMPanelWrappingDivTb .sapMTB {
+  min-height: 3.25rem !important;
+  height: auto !important;
+  padding: 0 1rem !important;
+  background: #ffffff !important;
+  border: none !important;
+}
+
+/* Expand icon alignment */
+.requestCard .sapMPanelExpandableIcon {
+  margin-top: 0 !important;
+  align-self: center !important;
+}
+
+/* Panel content */
+.requestCard .sapMPanelContent {
+  padding: 1.25rem !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  background: #ffffff;
+}
+
+/* Remove clipping from expandable content */
+.requestCard .sapMPanelExpandablePart {
+  overflow: visible !important;
+}
+
+/* =========================================================
+   Form styling
+   ========================================================= */
+
+.requestCard .sapUiFormResGrid {
+  padding: 0 !important;
+}
+
+.requestCard .sapMLabel {
+  color: #425b76;
+  font-weight: 500;
+}
+
+.requestCard .sapMInputBaseContentWrapper,
+.requestCard .sapMSlt,
+.requestCard .sapMStepInput {
+  border-radius: 0.5rem;
+}
+
+.requestCard .sapMInputBaseContentWrapper:focus-within,
+.requestCard .sapMSlt:focus-within {
+  box-shadow:
+    0 0 0 0.125rem rgba(10, 110, 209, 0.18);
+}
+
+/* =========================================================
+   Action bar
+   ========================================================= */
+
+.requestActionBar {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  padding: 1rem;
+  border: 1px solid #dfe3e8;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 -0.25rem 1rem rgba(34, 53, 72, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   Responsive design
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .requestPage {
+    padding: 0.75rem;
+  }
+
+  .requestHero {
+    padding: 1.25rem;
+  }
+
+  .requestHeroBadge {
+    display: none;
+  }
+
+  .requestCard .sapMPanelHdr {
+    min-height: 3rem !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+  }
+
+  .requestCard .sapMPanelWrappingDivTb .sapMTB {
+    min-height: 3rem !important;
+    padding: 0 0.75rem !important;
+  }
+
+  .requestCard .sapMPanelContent {
+    padding: 1rem !important;
+  }
+
+  .requestActionBar {
+    padding: 0.75rem;
+  }
+}

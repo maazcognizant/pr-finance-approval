@@ -1,0 +1,169 @@
+.deptPage {
+    min-height: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #eef7ff 0%, #f6fbff 45%, #ffffff 100%);
+}
+
+.deptHero {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #001f4d 0%, #004ea8 52%, #12a8e8 100%);
+    color: #ffffff;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 47, 110, 0.28);
+    margin-bottom: 1rem;
+}
+
+.deptEyebrow {
+    color: #cfe8ff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.deptHeroTitle {
+    color: #ffffff;
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-top: 0.25rem;
+}
+
+.deptHeroSub {
+    color: #eaf7ff;
+    max-width: 55rem;
+    margin-top: 0.35rem;
+}
+
+.deptHeroBadge {
+    min-width: 12rem;
+    padding: 0.8rem;
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.deptBadgeLabel {
+    color: #eaf7ff;
+    font-size: 0.75rem;
+    margin-bottom: 0.35rem;
+}
+
+.deptTileRow {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.deptTile {
+    min-width: 12rem;
+    padding: 1rem;
+    border-radius: 0.9rem;
+    background: #ffffff;
+    border: 1px solid #cde8ff;
+    box-shadow: 0 0.25rem 1rem rgba(0, 47, 110, 0.08);
+}
+
+.deptTileLabel {
+    color: #4f657a;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.deptTileValue {
+    color: #003f7f;
+    margin-top: 0.25rem;
+}
+
+.deptTileObjectNumber {
+    margin-top: 0.25rem;
+}
+
+.deptCard {
+    border-radius: 0.9rem;
+    background: #ffffff;
+    border: 1px solid #cde8ff;
+    box-shadow: 0 0.25rem 1rem rgba(0, 47, 110, 0.06);
+    margin-bottom: 1rem;
+}
+
+.deptDecisionCard {
+    border-radius: 0.9rem;
+    background: #ffffff;
+    border: 1px solid #8ed0ff;
+    box-shadow: 0 0.35rem 1.2rem rgba(0, 100, 190, 0.14);
+    margin-bottom: 1rem;
+}
+
+.aiAnalysisPanel {
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.aiAnalysisPanel .sapMPanelContent {
+  padding: 1rem 1.25rem;
+}
+
+.aiAnalysisPanel .sapMTB {
+  min-height: 3.25rem;
+}
+
+.aiMetricsRow {
+  width: 100%;
+}
+
+.aiMetricCard {
+  min-width: 10rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(0, 112, 242, 0.14);
+  border-radius: 0.75rem;
+  background: rgba(0, 112, 242, 0.04);
+}
+
+.aiRecommendationMetric {
+  min-width: 17rem;
+}
+
+.aiMetricLabel {
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #556b82;
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
+}
+
+.aiContentBlock {
+  padding: 0.85rem 1rem;
+  border-radius: 0.7rem;
+  background: #f7f9fb;
+}
+
+.aiWarningBlock {
+  border-left: 0.25rem solid #e9730c;
+  background: #fff8f1;
+}
+
+.aiQuestionBlock {
+  border-left: 0.25rem solid #0a6ed1;
+  background: #f3f8fd;
+}
+
+.aiBodyText {
+  display: block;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+  color: #29313a;
+}
+
+@media (max-width: 600px) {
+  .aiMetricCard,
+  .aiRecommendationMetric {
+    width: 100%;
+    min-width: 100%;
+    margin-right: 0;
+  }
+
+  .aiAnalysisPanel .sapMPanelContent {
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,296 @@
+_schema-version: "3.2"
+
+ID: pr-finance-approval
+version: 0.0.1
+
+modules:
+  # =========================================================
+  # Destination content for HTML5 repository and XSUAA
+  # =========================================================
+  - name: pr-finance-approval-destination-content
+    type: com.sap.application.content
+
+    requires:
+      - name: pr-finance-approval-destination-service
+        parameters:
+          content-target: true
+
+      - name: pr-finance-approval_html_repo_host
+        parameters:
+          service-key:
+            name: pr-finance-approval_html_repo_host-key
+
+      - name: uaa_pr-finance-approval
+        parameters:
+          service-key:
+            name: uaa_pr-finance-approval-key
+
+    parameters:
+      content:
+        subaccount:
+          destinations:
+            - Name: pr_finance_approval_pr_finance_approval_html_repo_host
+              ServiceInstanceName: pr-finance-approval-html5-app-host-service
+              ServiceKeyName: pr-finance-approval_html_repo_host-key
+              sap.cloud.service: pr-finance-approval
+
+            - Name: pr_finance_approval_uaa_pr_finance_approval
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: pr-finance-approval-xsuaa-service
+              ServiceKeyName: uaa_pr-finance-approval-key
+              sap.cloud.service: pr-finance-approval
+
+          existing_destinations_policy: update
+
+    build-parameters:
+      no-source: true
+
+  # =========================================================
+  # HTML5 repository application content
+  # =========================================================
+  - name: pr-finance-approval-app-content
+    type: com.sap.application.content
+    path: .
+
+    requires:
+      - name: pr-finance-approval_html_repo_host
+        parameters:
+          content-target: true
+
+    build-parameters:
+      build-result: resources
+
+      requires:
+        - name: commaazprapprovalprfinanceapprovalui
+          artifacts:
+            - commaazprapprovalprfinanceapprovalui.zip
+          target-path: resources/
+
+        - name: commaazprapprovalprdeptapprovalui
+          artifacts:
+            - commaazprapprovalprdeptapprovalui.zip
+          target-path: resources/
+
+        - name: commaazprapprovalprrequestui
+          artifacts:
+            - commaazprapprovalprrequestui.zip
+          target-path: resources/
+
+  # =========================================================
+  # Finance approval custom task UI
+  # =========================================================
+  - name: commaazprapprovalprfinanceapprovalui
+    type: html5
+    path: pr-finance-approval-ui
+
+    build-parameters:
+      build-result: dist
+      builder: custom
+
+      commands:
+        - npm install
+        - npm run build:cf
+
+      supported-platforms: []
+
+  # =========================================================
+  # Department Head approval custom task UI
+  # =========================================================
+  - name: commaazprapprovalprdeptapprovalui
+    type: html5
+    path: pr-dept-approval-ui
+
+    build-parameters:
+      build-result: dist
+      builder: custom
+
+      commands:
+        - npm install
+        - npm run build:cf
+
+      supported-platforms: []
+
+  # =========================================================
+  # Purchase requester UI
+  # =========================================================
+  - name: commaazprapprovalprrequestui
+    type: html5
+    path: pr-request-ui
+
+    build-parameters:
+      build-result: dist
+      builder: custom
+
+      commands:
+        - npm install
+        - npm run build:cf
+
+      supported-platforms: []
+
+  # =========================================================
+  # Standalone Cloud Foundry approuter
+  # =========================================================
+  - name: pr-finance-approval-approuter
+    type: approuter.nodejs
+    path: approuter
+
+    parameters:
+      memory: 128M
+      disk-quota: 256M
+      instances: 1
+      keep-existing-routes: true
+
+    requires:
+      # Login and authentication
+      - name: uaa_pr-finance-approval
+
+      # Serves applications stored in the HTML5 repository
+      - name: pr-finance-approval_html_repo_runtime
+
+      # Resolves the PR_AI_SERVICE destination
+      - name: pr-finance-approval-destination-service
+
+  # =========================================================
+  # Gemini AI and BPA trigger Node.js backend
+  # =========================================================
+  - name: pr-ai-service
+    type: nodejs
+    path: ai-service
+
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+      instances: 1
+      buildpack: nodejs_buildpack
+      health-check-type: http
+      health-check-http-endpoint: /health
+
+    provides:
+      - name: pr-ai-service-api
+        properties:
+          url: ${default-url}
+
+    requires:
+      # Existing Gemini secret service
+      - name: pr-gemini-secrets
+
+      # Existing SAP Build Process Automation OAuth service
+      - name: purchase-requisition-bpa-api
+
+      # Existing BPA API key and process definition service
+      - name: pr-bpa-trigger-secrets
+
+# ===========================================================
+# Resources
+# ===========================================================
+resources:
+  # =========================================================
+  # Destination service
+  # =========================================================
+  - name: pr-finance-approval-destination-service
+    type: org.cloudfoundry.managed-service
+
+    requires:
+      - name: pr-ai-service-api
+
+    parameters:
+      service: destination
+      service-name: pr-finance-approval-destination-service
+      service-plan: lite
+
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+
+        init_data:
+          instance:
+            destinations:
+              # Backend destination used by the requester UI
+              - Name: PR_AI_SERVICE
+                Description: Purchase Requisition AI and BPA Backend
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: NoAuthentication
+                URL: ~{pr-ai-service-api/url}
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: false
+
+              # SAPUI5 CDN destination
+              - Name: ui5
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: NoAuthentication
+                URL: https://ui5.sap.com
+
+            existing_destinations_policy: update
+
+  # =========================================================
+  # HTML5 repository host
+  #
+  # Stores the deployed UI application ZIP files.
+  # =========================================================
+  - name: pr-finance-approval_html_repo_host
+    type: org.cloudfoundry.managed-service
+
+    parameters:
+      service: html5-apps-repo
+      service-name: pr-finance-approval-html5-app-host-service
+      service-plan: app-host
+
+  # =========================================================
+  # HTML5 repository runtime
+  #
+  # Allows the standalone approuter to serve the applications.
+  # =========================================================
+  - name: pr-finance-approval_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+
+    parameters:
+      service: html5-apps-repo
+      service-name: pr-finance-approval-html5-app-runtime-service
+      service-plan: app-runtime
+
+  # =========================================================
+  # XSUAA authentication service
+  # =========================================================
+  - name: uaa_pr-finance-approval
+    type: org.cloudfoundry.managed-service
+
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: pr-finance-approval-xsuaa-service
+      service-plan: application
+
+  # =========================================================
+  # Existing Gemini secret service
+  # =========================================================
+  - name: pr-gemini-secrets
+    type: org.cloudfoundry.existing-service
+
+    parameters:
+      service-name: pr-gemini-secrets
+
+  # =========================================================
+  # Existing SAP Build Process Automation service
+  # =========================================================
+  - name: purchase-requisition-bpa-api
+    type: org.cloudfoundry.existing-service
+
+    parameters:
+      service-name: purchase-requisition-bpa-api
+
+  # =========================================================
+  # Existing BPA API-key secret service
+  # =========================================================
+  - name: pr-bpa-trigger-secrets
+    type: org.cloudfoundry.existing-service
+
+    parameters:
+      service-name: pr-bpa-trigger-secrets
+
+# ===========================================================
+# Global deployment parameters
+# ===========================================================
+parameters:
+  deploy_mode: html5-repo

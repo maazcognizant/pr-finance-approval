@@ -1,0 +1,28 @@
+{
+  "xsappname": "pr-finance-approval",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://6e95c1f4trial-dev-pr-finance-approval-approuter.cfapps.us10-001.hana.ondemand.com/**"
+    ]
+  },
+
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }
+  ],
+
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+  ]
+}

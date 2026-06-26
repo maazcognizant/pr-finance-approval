@@ -1,0 +1,57 @@
+{
+  "_version": "1.42.0",
+  "sap.app": {
+    "id": "com.maaz.prapproval.prrequestui",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": { "version": "0.0.1" },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.96.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": { "compact": true, "cozy": true },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": { "bundleName": "com.maaz.prapproval.prrequestui.i18n.i18n" }
+      }
+    },
+    "resources": { "css": [{ "uri": "css/style.css" }] },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.maaz.prapproval.prrequestui.view",
+        "controlAggregation": "pages",
+        "controlId": "app"
+      },
+      "routes": [{ "name": "RouteApp", "pattern": ":?query:", "target": "TargetApp" }],
+      "targets": { "TargetApp": { "viewName": "App", "viewId": "App", "viewType": "XML" } }
+    },
+    "rootView": {
+      "viewName": "com.maaz.prapproval.prrequestui.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "pr-finance-approval"
+  }
+}
